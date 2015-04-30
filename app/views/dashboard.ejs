@@ -1,0 +1,84 @@
+<% include header %>
+<script src="js/pages/dashboard.js"></script>
+<hr class="">
+    <br>
+    <div class="row">
+        <div class="col-sm-3">
+            <!--left col-->
+            <ul class="list-group">
+                <li class="list-group-item text-muted" contenteditable="false">Profile</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Birthday</strong></span> <%- user.BIRTHDAY %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Username</strong></span> <%- user.USERNAME %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Sex: </strong></span> <%- user.SEX ? "Male" : "Female" %>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Horoscope: </strong></span> <%- user.HOROSCOPE %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Religion: </strong></span> <%- user.RELIGION %></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Politics: </strong></span> <%- user.POLITICS %></li>
+            </ul>
+            <div class="panel panel-default">
+                <div class="panel-heading">Daily Horoscope
+
+                </div>
+                <div class="panel-body"><i style="color:green" class="fa fa-check-square"></i> ...
+
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Location <i class="fa fa-link fa-1x"></i>
+
+                </div>
+                <div class="panel-body">
+                    <%- user.LOCATION %>
+                </div>
+            </div>
+        </div>
+        <!--/col-3-->
+        <div class="col-sm-9" contenteditable="false" style="">
+            <div class="panel panel-default">
+                <div class="panel-heading"><%- user.NAME %>'s About</div>
+                <div class="panel-body"> <%- user.ABOUT %>
+
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Jobs</div>
+                <div class="panel-body">
+                    <div id="jobs" class="tagging-js" data-tags-input-name="taggone"></div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Universities</div>
+                <div class="panel-body">
+                    <div id="universities" class="tagging-js" data-tags-input-name="taggone"></div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Schools</div>
+                <div class="panel-body">
+                    <div id="schools" class="tagging-js" data-tags-input-name="taggone"></div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Movies</div>
+                <div class="panel-body">
+                    <div id="movies" class="tagging-js" data-tags-input-name="taggone"></div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Artists</div>
+                <div class="panel-body">
+                    <div id="artists" class="tagging-js" data-tags-input-name="taggone"></div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Hobbies</div>
+                <div class="panel-body">
+                    <div id="hobbies" class="tagging-js" data-tags-input-name="taggone"></div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Skills</div>
+                <div class="panel-body">
+                    <div id="skills" class="tagging-js" data-tags-input-name="taggone"></div>
+                </div>
+            </div>
+    <% include footer %>

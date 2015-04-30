@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>VT - Homework</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/tag-basic-style.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/tagging.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#save_all").hide();
+        });
+    </script>
+</head>
+<body>
+<div class="wrapper">
+    <div class="box">
+        <div class="row row-offcanvas row-offcanvas-left">
+            <!-- main right col -->
+            <div class="column col-sm-10 col-xs-11" id="main">
+                <!-- top nav -->
+                <div class="navbar navbar-blue navbar-static-top">
+                    <div class="navbar-header">
+                        <button class="navbar-toggle" type="button" data-toggle="collapse"
+                                data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="/" class="navbar-brand logo">VT</a>
+                    </div>
+                    <nav class="collapse navbar-collapse" role="navigation">
+                        <ul class="nav navbar-nav">
+                            <%
+                             for(var i = 0; i < nav.length; i++) {
+                            %>
+                                <li>
+                                    <a href="<%- nav[i].path %>"><i class="glyphicon glyphicon-<%- nav[i].icon %>"></i> <%- nav[i].text %></a>
+                                </li>
+                            <%
+                             }
+                            %>
+                            <li>
+                                <a href="#"><span class="badge">;)</span></a>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#" id="save_all" class="dropdown-toggle"><i class="glyphicon glyphicon-floppy-save"></i></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
