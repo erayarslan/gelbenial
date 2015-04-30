@@ -129,41 +129,5 @@ module.exports = {
     ], function (err, results) {
       callback(results);
     });
-  },
-  getAllData: function (id, callback) {
-
-    var info = {
-      "jobs": "job",
-      "universities": "university_name",
-      "schools": "school_name",
-      "movies": "movie_title",
-      "artists": "artist_name",
-      "hobbies": "hobby",
-      "skills": "skill"
-    };
-
-    var tables = [
-      "jobs",
-      "universities",
-      "schools",
-      "movies",
-      "artists",
-      "hobbies",
-      "skills"
-    ];
-
-    var result = [];
-
-    var pend = tables.length;
-
-    for (var index = 0; index < tables.length; index++) {
-      conn.execute("SELECT * FROM tbl_" + tables[index] + " WHERE user_id = " + id, [], function (err, results) {
-        result.push(results);
-
-        if (0 === --pend) {
-          callback(result);
-        }
-      });
-    }
   }
 };
