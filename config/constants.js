@@ -2,7 +2,7 @@ module.exports = {
   name: "vt-odev",
   port: "1337",
   db: {
-    hostname: "192.168.1.8",
+    hostname: "192.168.1.6",
     port: 1521,
     database: "xe",
     user: "ol",
@@ -26,5 +26,9 @@ module.exports = {
     "Judaism",
     "Islamism",
     "Christianity"
+  ],
+  sex: [
+    "Female",
+    "Male"
   ]
 };

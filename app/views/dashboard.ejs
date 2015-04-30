@@ -15,11 +15,20 @@
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Politics: </strong></span> <%- user.POLITICS %></li>
             </ul>
             <div class="panel panel-default">
-                <div class="panel-heading">Daily Horoscope
+                <div class="panel-heading">Hope
 
                 </div>
-                <div class="panel-body"><i style="color:green" class="fa fa-check-square"></i> ...
-
+                <div class="panel-body"><i style="color:green" class="fa fa-check-square"></i>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="male" class="sex" value="0"> Male
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="female" class="sex" value="1"> Female
+                        </label>
+                    </div>
                 </div>
             </div>
             <div class="panel panel-default">
@@ -40,30 +49,6 @@
                 </div>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading">Jobs</div>
-                <div class="panel-body">
-                    <div id="jobs" class="tagging-js" data-tags-input-name="taggone"></div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">Universities</div>
-                <div class="panel-body">
-                    <div id="universities" class="tagging-js" data-tags-input-name="taggone"></div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">Schools</div>
-                <div class="panel-body">
-                    <div id="schools" class="tagging-js" data-tags-input-name="taggone"></div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">Movies</div>
-                <div class="panel-body">
-                    <div id="movies" class="tagging-js" data-tags-input-name="taggone"></div>
-                </div>
-            </div>
-            <div class="panel panel-default">
                 <div class="panel-heading">Artists</div>
                 <div class="panel-body">
                     <div id="artists" class="tagging-js" data-tags-input-name="taggone"></div>
@@ -76,9 +61,39 @@
                 </div>
             </div>
             <div class="panel panel-default">
+                <div class="panel-heading">Jobs</div>
+                <div class="panel-body">
+                    <div id="jobs" class="tagging-js" data-tags-input-name="taggone"></div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Movies</div>
+                <div class="panel-body">
+                    <div id="movies" class="tagging-js" data-tags-input-name="taggone"></div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Schools</div>
+                <div class="panel-body">
+                    <div id="schools" class="tagging-js" data-tags-input-name="taggone"></div>
+                </div>
+            </div>
+            <div class="panel panel-default">
                 <div class="panel-heading">Skills</div>
                 <div class="panel-body">
                     <div id="skills" class="tagging-js" data-tags-input-name="taggone"></div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Universities</div>
+                <div class="panel-body">
+                    <div id="universities" class="tagging-js" data-tags-input-name="taggone"></div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Words</div>
+                <div class="panel-body">
+                    <div id="words" class="tagging-js" data-tags-input-name="taggone"></div>
                 </div>
             </div>
     <% include footer %>

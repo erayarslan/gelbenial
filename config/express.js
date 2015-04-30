@@ -14,7 +14,7 @@ module.exports = function (app, config, callback) {
     //
     oracle.connect(config.db, function (err, conn) {
       if (err) {
-        throw  new Error("Database Connection Failed!");
+        throw err;
       } else {
         console.log("> Database Connection Done :)");
       }
