@@ -93,7 +93,7 @@ module.exports.addUser = function (request, response) {
 
 module.exports.saveAll = function (request, response) {
   var data = request.body;
-  utils.deleteAllDataWithProcedure(request.user.ID, function() {
+  utils.deleteAllDataWithProcedure(request.user.ID, function () {
     utils.saveData("jobs", "job", request.user.ID, data, function () {
       utils.saveData("universities", "university_name", request.user.ID, data, function () {
         utils.saveData("schools", "school_name", request.user.ID, data, function () {
@@ -117,7 +117,7 @@ module.exports.saveAll = function (request, response) {
 };
 
 module.exports.getAll = function (request, response) {
-  utils.getAllDataWithProcedure(request.user.ID, function(data) {
+  utils.getAllDataWithProcedure(request.user.ID, function (data) {
     response.status(200).send(data);
   });
 };

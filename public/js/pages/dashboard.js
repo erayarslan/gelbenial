@@ -28,44 +28,44 @@ $(document).ready(function () {
     beforeSend: function () {
     },
     success: function (data) {
-      for (var i = 0; i < data.returnParam.length ; i++) {
+      for (var i = 0; i < data.returnParam.length; i++) {
         artists[0].tagging("add", data.returnParam[i].ARTIST_NAME);
       }
       //
-      for (var i = 0; i < data.returnParam1.length ; i++) {
+      for (var i = 0; i < data.returnParam1.length; i++) {
         hobbies[0].tagging("add", data.returnParam1[i].HOBBY);
       }
       //
-      for (var i = 0; i < data.returnParam2.length ; i++) {
-        if(data.returnParam2[i].SEX.toString() === "0") {
+      for (var i = 0; i < data.returnParam2.length; i++) {
+        if (data.returnParam2[i].SEX.toString() === "0") {
           $("#female").attr("checked", true);
         }
-        if(data.returnParam2[i].SEX.toString() === "1") {
+        if (data.returnParam2[i].SEX.toString() === "1") {
           $("#male").attr("checked", true);
         }
       }
       //
-      for (var i = 0; i < data.returnParam3.length ; i++) {
+      for (var i = 0; i < data.returnParam3.length; i++) {
         jobs[0].tagging("add", data.returnParam3[i].JOB);
       }
       //
-      for (var i = 0; i < data.returnParam4.length ; i++) {
+      for (var i = 0; i < data.returnParam4.length; i++) {
         movies[0].tagging("add", data.returnParam4[i].MOVIE_TITLE);
       }
       //
-      for (var i = 0; i < data.returnParam5.length ; i++) {
+      for (var i = 0; i < data.returnParam5.length; i++) {
         schools[0].tagging("add", data.returnParam5[i].SCHOOL_NAME);
       }
       //
-      for (var i = 0; i < data.returnParam6.length ; i++) {
+      for (var i = 0; i < data.returnParam6.length; i++) {
         skills[0].tagging("add", data.returnParam6[i].SKILL);
       }
       //
-      for (var i = 0; i < data.returnParam7.length ; i++) {
+      for (var i = 0; i < data.returnParam7.length; i++) {
         universities[0].tagging("add", data.returnParam7[i].UNIVERSITY_NAME);
       }
       //
-      for (var i = 0; i < data.returnParam8.length ; i++) {
+      for (var i = 0; i < data.returnParam8.length; i++) {
         words[0].tagging("add", data.returnParam8[i].WORD);
       }
     },
@@ -77,11 +77,11 @@ $(document).ready(function () {
   $("#save_all").click(function () {
     var sex = [];
 
-    if($("#male").is(":checked")) {
+    if ($("#male").is(":checked")) {
       sex.push("1");
     }
 
-    if($("#female").is(":checked")) {
+    if ($("#female").is(":checked")) {
       sex.push("0");
     }
 

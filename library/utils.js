@@ -80,7 +80,7 @@ module.exports = {
       for (var index = 0; index < data[table].length; index++) {
         conn.execute("INSERT INTO tbl_" + table + " (user_id, " + key + ") VALUES " + "(" + id + ", '" + data[table][index] + "')",
           [], function (err, results) {
-            if(err) {
+            if (err) {
               console.log(err);
             }
           });
@@ -109,12 +109,12 @@ module.exports = {
       });
     }
   },
-  deleteAllDataWithProcedure: function(id, callback) {
-    conn.execute("call DELETEALLDATABYUSERID(:1)", [id], function(err, results) {
+  deleteAllDataWithProcedure: function (id, callback) {
+    conn.execute("call DELETEALLDATABYUSERID(:1)", [id], function (err, results) {
       callback();
     });
   },
-  getAllDataWithProcedure: function(id, callback) {
+  getAllDataWithProcedure: function (id, callback) {
     conn.execute("call GETALLDATA(:1, :2, :3, :4, :5, :6, :7, :8, :9, :10)", [
       id,
       new oracle.OutParam(oracle.OCCICURSOR),
@@ -126,7 +126,7 @@ module.exports = {
       new oracle.OutParam(oracle.OCCICURSOR),
       new oracle.OutParam(oracle.OCCICURSOR),
       new oracle.OutParam(oracle.OCCICURSOR)
-    ], function(err, results) {
+    ], function (err, results) {
       callback(results);
     });
   },
