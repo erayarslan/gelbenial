@@ -1,7 +1,7 @@
 var oracle = require('oracle');
 var conn = global.connection;
 
-module.exports = {
+var utils = {
   secure: function (request, response, next) {
     conn.execute("SELECT * FROM tbl_tokens WHERE TOKEN = :1", [request.cookies.token || request.headers.token || ""], function (err, results) {
       if (err) {
@@ -114,7 +114,7 @@ module.exports = {
       callback();
     });
   },
-  getAllDataWithProcedure: function (id, callback) {
+  getAllDataWithProcedure: function (id, callback, index) {
     conn.execute("call GETALLDATA(:1, :2, :3, :4, :5, :6, :7, :8, :9, :10)", [
       id,
       new oracle.OutParam(oracle.OCCICURSOR),
@@ -127,7 +127,52 @@ module.exports = {
       new oracle.OutParam(oracle.OCCICURSOR),
       new oracle.OutParam(oracle.OCCICURSOR)
     ], function (err, results) {
-      callback(results);
+      if (typeof index !== "undefined") {
+        callback(results, index);
+      } else {
+        callback(results);
+      }
+    });
+  },
+  lookup: function (user, callback) {
+    utils.getAllDataWithProcedure(user.ID, function (data) {
+      var info = {
+        user: user,
+        artists: data.returnParam,
+        hobbies: data.returnParam1,
+        hope: data.returnParam2,
+        jobs: data.returnParam3,
+        movies: data.returnParam4,
+        schools: data.returnParam5,
+        skills: data.returnParam6,
+        universities: data.returnParam7,
+        words: data.returnParam8
+      };
+
+      var userBirthYear = parseInt(info.user.BIRTHDAY.split("-")[0]);
+
+      var hopeSql = "";
+      if (info.hope.length == 2) {
+        hopeSql = "select * from tbl_users";
+      } else if (info.hope.length == 0) {
+        callback([]);
+        return;
+      } else {
+        hopeSql = "select * from tbl_users where sex = " + info.hope[0].SEX;
+      }
+      conn.execute(hopeSql, [], function (err, hopeUsers) {
+        for (var i = 0; i < hopeUsers.length; i++) {
+          var targetBirthYear = parseInt(hopeUsers[i].BIRTHDAY.split("-")[0]);
+          var targetId = hopeUsers[i].ID;
+          var targetLocation = hopeUsers[i].LOCATION;
+          if (!(userBirthYear - 1 <= targetBirthYear && userBirthYear + 1 >= targetBirthYear) || targetId == info.user.ID || targetLocation !== info.user.LOCATION) {
+            hopeUsers.splice(i--, 1);
+          }
+        }
+        callback(hopeUsers);
+      });
     });
   }
 };
+
+module.exports = utils;

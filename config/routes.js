@@ -7,6 +7,7 @@ module.exports = function (app) {
   app.get('/', utils.isAuth, home.index);
   app.get('/login', utils.isAuth, home.login);
   app.get('/dashboard', utils.isSecure, home.dashboard);
+  app.get('/lookup', utils.isSecure, home.lookup);
   app.get('/logout', home.logout);
   // AJAX
   app.post('/api/login', users.doLogin);

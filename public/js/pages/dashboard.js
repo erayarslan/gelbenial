@@ -1,6 +1,10 @@
 $(document).ready(function () {
   $("#save_all").show();
   //
+  $(window).bind('beforeunload', function(e){
+    /* saveAll(); */
+  });
+  //
   var jobs = $("#jobs").tagging();
   var universities = $("#universities").tagging();
   var schools = $("#schools").tagging();
@@ -74,7 +78,7 @@ $(document).ready(function () {
     }
   });
   //
-  $("#save_all").click(function () {
+  var saveAll = function() {
     var sex = [];
 
     if ($("#male").is(":checked")) {
@@ -111,5 +115,9 @@ $(document).ready(function () {
         $("#save_all").show();
       }
     });
+  };
+  //
+  $("#save_all").click(function () {
+    saveAll();
   });
 });

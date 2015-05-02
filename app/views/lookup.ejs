@@ -1,0 +1,39 @@
+<% include header %>
+<script src="js/pages/lookup.js"></script>
+<hr class="">
+<br>
+<div class="row">
+<%
+for (var i = 0 ; i < users.length ; i++) {
+%>
+<div class="col-sm-3">
+    <ul class="list-group">
+        <li class="list-group-item text-muted" contenteditable="false"><%- users[i].NAME %></li>
+        <li class="list-group-item text-right"><span class="pull-left"><strong
+                        class="">Username</strong></span> <%- users[i].USERNAME %></li>
+        <li class="list-group-item text-right"><span class="pull-left"><strong
+                        class="">Birthday</strong></span> <%- users[i].BIRTHDAY %></li>
+        <li class="list-group-item text-right"><span class="pull-left"><strong
+                        class="">Location: </strong></span> <%- users[i].LOCATION %>
+        <li class="list-group-item text-right"><span class="pull-left"><strong
+                        class="">Jobs: </strong></span> <%- users[i].JOBS === "" ? "..." : users[i].JOBS %></li>
+        <li class="list-group-item text-right"><span class="pull-left"><strong
+                        class="">Universities: </strong></span> <%- users[i].UNIVERSITIES === "" ? "..." : users[i].UNIVERSITIES %>
+        </li>
+        <li class="list-group-item text-right"><span class="pull-left"><strong
+                        class="">Schools: </strong></span> <%- users[i].SCHOOLS === "" ? "..." : users[i].SCHOOLS %>
+        </li>
+        <li class="list-group-item text-right">
+            <button
+                    id="ok_button"
+                    class="btn btn-success"
+                    type="submit">Add
+            </button>
+        </li>
+    </ul>
+</div>
+<%
+}
+%>
+</div>
+<% include footer %>
