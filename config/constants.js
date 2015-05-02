@@ -1,3 +1,7 @@
+/**
+ * @thing constants
+ */
+
 module.exports = {
   name: "vt-odev",
   port: "1337",
