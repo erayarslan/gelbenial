@@ -1,11 +1,4 @@
-# gelbenial
-
-come and take me!
-
 # author
 
-Eray Arslan
-
-# license
-
-mit.
+1. Eray Arslan
+2. Ismail Cankul
