@@ -2,11 +2,11 @@ module.exports = {
   name: "vt-odev",
   port: "1337",
   db: {
-    hostname: "192.168.1.7",
+    hostname: "192.168.1.40",
     port: 1521,
-    database: "xe",
-    user: "ol",
-    password: "ol"
+    database: "orcl",
+    user: "system",
+    password: "oracle"
   },
   horoscopes: [
     "Aries",
