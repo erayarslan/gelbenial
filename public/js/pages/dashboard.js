@@ -149,7 +149,7 @@ $(document).ready(function () {
 
    */
 
-  var socket = io.connect('http://192.168.1.5:8084');
+  var socket = io.connect('http://localhost:8084');
   socket.on('disconnect', function () {
     $.toast('Server Died :(');
     window.location.reload(); // if possible :D
