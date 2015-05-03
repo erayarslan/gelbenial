@@ -172,6 +172,30 @@ var utils = {
         callback(hopeUsers);
       });
     });
+  },
+  getFriendList: function (id, callback) {
+    conn.execute(
+      "SELECT * FROM tbl_friends WHERE user_id = :1",
+      [
+        id
+      ], function (err, friends_results) {
+        var str = "";
+        for (var i = 0; i < friends_results.length; i++) {
+          if(i == friends_results.length - 1) {
+            str += friends_results[i].FRIEND_ID;
+          } else {
+            str += friends_results[i].FRIEND_ID + ",";
+          }
+        }
+
+        conn.execute(
+          "SELECT * FROM tbl_users WHERE id in (" + str +")",
+          [], function (err, users_results) {
+            callback(users_results);
+          }
+        );
+      }
+    );
   }
 };
 

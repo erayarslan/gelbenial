@@ -14,5 +14,8 @@ module.exports = function (app) {
   app.get('/api/users', utils.secure, users.getAllUsers);
   app.post('/api/users', users.addUser);
   app.post('/api/users/data', utils.secure, users.saveAll);
+  app.post('/api/users/friends', utils.secure, users.addFriend);
+  app.get('/api/users/friends', utils.secure, users.getFriends);
+  app.delete('/api/users/friends', utils.secure, users.removeFriend);
   app.get('/api/users/data', utils.secure, users.getAll);
 };

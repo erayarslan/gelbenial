@@ -1,7 +1,7 @@
 $(document).ready(function () {
   $("#save_all").show();
   //
-  $(window).bind('beforeunload', function(e){
+  $(window).bind('beforeunload', function (e) {
     /* saveAll(); */
   });
   //
@@ -78,7 +78,7 @@ $(document).ready(function () {
     }
   });
   //
-  var saveAll = function() {
+  var saveAll = function () {
     var sex = [];
 
     if ($("#male").is(":checked")) {
@@ -119,5 +119,28 @@ $(document).ready(function () {
   //
   $("#save_all").click(function () {
     saveAll();
+  });
+  //
+  $(".remove_button").click(function (e) {
+    var target_element = e.currentTarget.parentElement;
+    var target_user_id = target_element.id;
+
+    $.ajax({
+      type: "DELETE",
+      url: "api/users/friends",
+      data: JSON.stringify({
+        "FRIEND_ID": target_user_id
+      }),
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      success: function (data) {
+        $(target_element).hide('slow', function () {
+          $(target_element).remove();
+          $("#point").html(parseInt($("#point").html()) - 1);
+        });
+      },
+      error: function (err) {
+      }
+    });
   });
 });

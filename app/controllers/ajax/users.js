@@ -66,7 +66,7 @@ module.exports.addUser = function (request, response) {
   var user = request.body;
 
   conn.execute(
-    "INSERT INTO tbl_users (USERNAME, PASSWORD, NAME, BIRTHDAY, SEX, LOCATION, HOROSCOPE, RELIGION, POLITICS, ABOUT) VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10)",
+    "INSERT INTO tbl_users (USERNAME, PASSWORD, NAME, BIRTHDAY, SEX, LOCATION, HOROSCOPE, RELIGION, POLITICS, ABOUT, POINT) VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11)",
     [
       user.USERNAME || "",
       md5(user.PASSWORD || ""),
@@ -77,7 +77,99 @@ module.exports.addUser = function (request, response) {
       user.HOROSCOPE || "",
       user.RELIGION || "",
       user.POLITICS || "",
-      user.ABOUT || ""
+      user.ABOUT || "",
+      0
+    ], function (err, results) {
+      if (err) {
+        response.status(500).send({
+          error: err.message
+        });
+      }
+      response.status(200).send({
+        result: results
+      });
+    }
+  );
+};
+
+module.exports.addFriend = function (request, response) {
+  var data = request.body;
+
+  conn.execute(
+    "INSERT INTO tbl_friends (USER_ID, FRIEND_ID) VALUES (:1, :2)",
+    [
+      request.user.ID,
+      data.FRIEND_ID
+    ], function (err, results) {
+      if (err) {
+        response.status(500).send({
+          error: err.message
+        });
+      }
+      conn.execute(
+        "INSERT INTO tbl_friends (USER_ID, FRIEND_ID) VALUES (:1, :2)",
+        [
+          data.FRIEND_ID,
+          request.user.ID
+        ], function (err, after_results) {
+          if (err) {
+            response.status(500).send({
+              error: err.message
+            });
+          } else {
+            response.status(200).send({
+              result: results
+            });
+          }
+        }
+      );
+    }
+  );
+};
+
+module.exports.removeFriend = function (request, response) {
+  var data = request.body;
+
+  conn.execute(
+    "DELETE FROM tbl_friends WHERE user_id = :1 and friend_id = :2",
+    [
+      request.user.ID,
+      data.FRIEND_ID
+    ], function (err, first_results) {
+      if (err) {
+        response.status(500).send({
+          error: err.message
+        });
+      } else {
+        conn.execute(
+          "DELETE FROM tbl_friends WHERE user_id = :1 and friend_id = :2",
+          [
+            data.FRIEND_ID,
+            request.user.ID
+          ], function (err, second_results) {
+            if (err) {
+              response.status(500).send({
+                error: err.message
+              });
+            } else {
+              response.status(200).send({
+                result: second_results
+              });
+            }
+          }
+        );
+      }
+    }
+  );
+};
+
+module.exports.getFriends = function (request, response) {
+  var data = request.body;
+
+  conn.execute(
+    "SELECT * FROM tbl_friends WHERE user_id = :1",
+    [
+      request.user.ID
     ], function (err, results) {
       if (err) {
         response.status(500).send({

@@ -6,8 +6,8 @@
 <%
 for (var i = 0 ; i < users.length ; i++) {
 %>
-<div class="col-sm-3">
-    <ul class="list-group">
+<div class="col-sm-4">
+    <ul class="list-group" id="<%- users[i].ID %>">
         <li class="list-group-item text-muted" contenteditable="false"><%- users[i].NAME %></li>
         <li class="list-group-item text-right"><span class="pull-left"><strong
                         class="">Username</strong></span> <%- users[i].USERNAME %></li>
@@ -25,9 +25,11 @@ for (var i = 0 ; i < users.length ; i++) {
         </li>
         <li class="list-group-item text-right">
             <button
-                    id="ok_button"
-                    class="btn btn-success"
-                    type="submit">Add
+                    id="add_button"
+                    class="btn btn-success add_button"
+                    target_id="<%- users[i].ID %>"
+                    type="submit" data-loading-text="..."
+                    autocomplete="off">Add
             </button>
         </li>
     </ul>

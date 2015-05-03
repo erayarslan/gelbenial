@@ -7,7 +7,8 @@ module.exports.index = function (req, res) {
     nav: [
       {text: "Home", icon: "home", path: "/"},
       {text: "Login", icon: "log-in", path: "/login"}
-    ]
+    ],
+    text: ";)"
   });
 };
 
@@ -16,7 +17,8 @@ module.exports.login = function (req, res) {
     nav: [
       {text: "Home", icon: "home", path: "/"},
       {text: "Sign-up", icon: "new-window", path: "/"}
-    ]
+    ],
+    text: ";)"
   });
 };
 
@@ -25,13 +27,17 @@ module.exports.dashboard = function (req, res) {
   user.HOROSCOPE = constants.horoscopes[parseInt(user.HOROSCOPE)];
   user.RELIGION = constants.religions[parseInt(user.RELIGION)];
 
-  res.render('dashboard', {
-    nav: [
-      {text: "Profile", icon: "user", path: "/dashboard"},
-      {text: "Lookup", icon: "chevron-up", path: "/lookup"},
-      {text: "Logout", icon: "log-out", path: "/logout"}
-    ],
-    user: user
+  utils.getFriendList(user.ID, function(data) {
+    res.render('dashboard', {
+      nav: [
+        {text: "Profile", icon: "user", path: "/dashboard"},
+        {text: "Lookup", icon: "chevron-up", path: "/lookup"},
+        {text: "Logout", icon: "log-out", path: "/logout"}
+      ],
+      user: user,
+      friends: data || [],
+      text: user.POINT
+    });
   });
 };
 
@@ -67,7 +73,8 @@ module.exports.lookup = function (req, res) {
               {text: "Lookup", icon: "chevron-up", path: "/lookup"},
               {text: "Logout", icon: "log-out", path: "/logout"}
             ],
-            users: users
+            users: users,
+            text: user.POINT
           });
         }
       }, i);
@@ -80,7 +87,8 @@ module.exports.lookup = function (req, res) {
           {text: "Lookup", icon: "chevron-up", path: "/lookup"},
           {text: "Logout", icon: "log-out", path: "/logout"}
         ],
-        users: users
+        users: users,
+        text: user.POINT
       });
     }
   });

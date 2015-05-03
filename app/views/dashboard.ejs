@@ -38,6 +38,20 @@
                 </div>
             </div>
         </div>
+        <ul class="list-group">
+            <li class="list-group-item text-muted" contenteditable="false">Friends</li>
+            <%
+            for (var i = 0; i < friends.length; i++) {
+                %>
+                <li id="<%- friends[i].ID %>" class="list-group-item text-right"><span class="pull-left"><strong
+                                class=""><%- friends[i].USERNAME %></strong></span>
+                    <button id="remove_button" type="button" class="btn btn-default btn-xs remove_button"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Remove</button>
+                </li>
+                <%
+            }
+            %>
+
+        </ul>
         <div class="panel panel-default">
             <div class="panel-heading">Location <i class="fa fa-link fa-1x"></i>
 
