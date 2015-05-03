@@ -143,4 +143,66 @@ $(document).ready(function () {
       }
     });
   });
+  /*
+
+    !!! SOCKET DARK*SIDE !!!
+
+   */
+
+  var socket = io.connect('http://192.168.1.5:8084');
+  socket.on('disconnect', function () {
+    $.toast('Server Died :(');
+    window.location.reload(); // if possible :D
+  });
+  socket.emit("newUser", $("#username_val").html());
+
+  var initSocket = function (socket) {
+    socket.on("wowSomeoneOnline", function (data) {
+      if($("#username_val").html() !== data) {
+        $.toast(data + " is online :)");
+      }
+    });
+
+    socket.on("updateUsers", function (data) {
+      $("#users").empty();
+      for (var key in data) {
+        var str = '<li style="margin-left: 12px"><div class="checkbox"><label><input type="checkbox" checked value="' + key + '"> ' + data[key].nick + "(" + (data[key].online ? 'online' : 'offline') + ")" + '</label></div></li>';
+        $("#users").append(str);
+      }
+    });
+
+    socket.on("checkUndeliveredMessages", function (data) {
+      for (var i = 0; i < data.length; i++) {
+        var str = '<li class="left clearfix"><div class="chat-body clearfix"><div class="header"><strong class="primary-font">' + data[i].from + '</strong> <small class="pull-right text-muted">' + moment(data[i].date).fromNow() + '</small></div><p>' + data[i].message + '</p></div> </li>'
+        $("#messages").append(str);
+      }
+    });
+
+    socket.on("newMessage", function (obj) {
+      var str = '<li class="left clearfix"><div class="chat-body clearfix"><div class="header"><strong class="primary-font">' + obj.nick + '</strong> <small class="pull-right text-muted">' + moment(obj.date).fromNow() + '</small></div><p>' + obj.message + '</p></div> </li>'
+      $("#messages").append(str);
+    });
+
+    $('#message').keypress(function (event) {
+      if (event.keyCode == 13) {
+        $('#send').click();
+      }
+    });
+
+    $("#send").click(function () {
+      var selectedUsers = $("#users input:checkbox:checked").map(function () {
+        return $(this).val();
+      }).get();
+
+      socket.emit("sendMessage", {
+        from_id: socket.id,
+        target_ids: selectedUsers,
+        message: $("#message").val()
+      });
+
+      $("#message").val("");
+    });
+  };
+
+  initSocket(socket);
 });
