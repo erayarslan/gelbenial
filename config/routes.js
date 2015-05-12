@@ -18,4 +18,5 @@ module.exports = function (app) {
   app.get('/api/users/friends', utils.secure, users.getFriends);
   app.delete('/api/users/friends', utils.secure, users.removeFriend);
   app.get('/api/users/data', utils.secure, users.getAll);
+  app.get('/api/users/friends/count', utils.isSecure, users.getFriendCount);
 };

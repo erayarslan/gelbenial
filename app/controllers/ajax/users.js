@@ -213,3 +213,9 @@ module.exports.getAll = function (request, response) {
     response.status(200).send(data);
   });
 };
+
+module.exports.getFriendCount = function (request, response) {
+  utils.getFriendCount(request.user.ID, function (data) {
+    response.status(200).send(data);
+  });
+}

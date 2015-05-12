@@ -114,6 +114,14 @@ var utils = {
       callback();
     });
   },
+  getFriendCount: function (id, callback) {
+    conn.execute("select GETFRIENDCOUNT(" + id + ") from dual", [], function (err, results) {
+      if(err) {
+        throw err;
+      }
+      callback(results);
+    });
+  },
   getAllDataWithProcedure: function (id, callback, index) {
     conn.execute("call GETALLDATA(:1, :2, :3, :4, :5, :6, :7, :8, :9, :10)", [
       id,
