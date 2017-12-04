@@ -10,7 +10,7 @@
     "oracle": "*",
     "MD5": "*",
     "rand-token": "*",
-    "ejs": "~1.0.0",
+    "ejs": "~2.5.5",
     "socket.io": "*",
     "lowdb": "*"
   }
